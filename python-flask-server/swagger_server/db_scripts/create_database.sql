@@ -1,0 +1,1 @@
+CREATE DATABASE allocation_service;
