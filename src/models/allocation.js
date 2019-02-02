@@ -7,12 +7,12 @@ const AllocationSchema = new Schema({
     profile: String,
     bucket_id: String,
     round_id: String,
-    date: Date,
+    date: Number,
     allocator: String,
     deleted: Boolean,
     amount: Number
-}, {_id: false, timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}});
+}, {timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}});
 
-const Allocation = mongoose.model('AllocationSchema', AllocationSchema);
+const Allocation = mongoose.model('allocation', AllocationSchema);
 
 module.exports = Allocation;

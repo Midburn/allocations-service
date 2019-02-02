@@ -1,4 +1,5 @@
-import { GroupsRouter } from './groups';
+import { AllocationsRouter } from './allocations';
 import { RoundsRouter } from './rounds';
+import { BucketsRouter } from './buckets';
 
-export const routers = [ GroupsRouter, RoundsRouter ];
+export const routers = [ AllocationsRouter, RoundsRouter, BucketsRouter ];

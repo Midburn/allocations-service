@@ -37,13 +37,14 @@ class Server {
     }
 
     initRouters() {
-        console.log('Starting routers...');
-        for (const i in this.routers) {
+      console.log('Starting routers...');
+      for (const i in this.routers) {
             /**
              * Pass all services to router for DI
              */
             const Router = this.routers[i];
             const router = new Router(this.services);
+
             this.express.use(`/${router.prefix}`, router.express);
         }
     }
@@ -64,7 +65,7 @@ class Server {
 /////////////////////////////
 // Mongoose
 /////////////////////////////
-mongoose.connect(process.env.DB_URL);
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true });
 mongoose.Promise = Promise;
 
 const server = new Server(routers, services);

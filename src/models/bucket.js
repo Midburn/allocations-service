@@ -1,4 +1,4 @@
-import { GROUP_TYPES }  from '../consts' 
+import { GROUP_TYPES, ALLOCATION_TYPES }  from '../consts' 
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -8,13 +8,18 @@ const BucketSchema = new Schema({
     event_id: String,
     based_on_event_id: String,
     group_id: String,
+    group_name: String,
     amount: Number,
-    allocation_type: {
+    group_type: {
       type: String,
       enum: GROUP_TYPES,
+    },
+    allocation_type: {
+      type: String,
+      enum: ALLOCATION_TYPES,
     }
-}, {_id: false, timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}});
+}, {timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}});
 
-const Bucket = mongoose.model('BucketSchema', BucketSchema);
+const Bucket = mongoose.model('bucket', BucketSchema);
 
 module.exports = Bucket;

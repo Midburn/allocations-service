@@ -1,10 +1,14 @@
-import { HandlerService } from './handler.service';
-import { RoundsService } from './rounds.service';
+import HandlerService from './handler.service';
+import RoundService from './rounds.service';
+import BucketService from './buckets.service';
+import AllocationService from './allocations.service';
 
 /**
  * Export singleton services
  */
 export const services = {
-    handler: new HandlerService(),
-    rounds: new RoundsService()
+    handler: HandlerService,
+    rounds: RoundService,
+    buckets: BucketService,
+    allocations: AllocationService,
 };

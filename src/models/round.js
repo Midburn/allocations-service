@@ -4,17 +4,33 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RoundSchema = new Schema({
-    start_date: Date,
-    end_date: Date,
-    active: Boolean,
-    event_id: String,
-    based_on_event_id: String,
+    start_date: {
+      type: Number,
+      required: true
+    },
+    end_date: {
+      type: Number,
+      required: true
+    },
+    active: {
+      type: Boolean,
+      required: true
+    },
+    event_id: {
+      type: String,
+      required: true
+    },
+    based_on_event_id: {
+      type: String,
+      required: true
+    },
     allocation_type: {
       type: String,
+      required: true,
       enum: ALLOCATION_TYPES,
     }
-}, {_id: false, timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}});
+}, {timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}});
 
-const Round = mongoose.model('RoundSchema', RoundSchema);
+const Round = mongoose.model('round', RoundSchema);
 
 module.exports = Round;

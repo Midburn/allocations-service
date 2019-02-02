@@ -1,4 +1,4 @@
-export class HandlerService {
+class HandlerService {
 
     /**
      * Handle data return from exporess `next` function
@@ -31,3 +31,4 @@ export class HandlerService {
     }
 }
 
+export default new HandlerService()
