@@ -1,20 +1,20 @@
-import { ALLOCATION_TYPES }  from '../consts' 
+import { GROUP_TYPES }  from '../consts' 
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const RoundSchema = new Schema({
-    start_date: Date,
-    end_date: Date,
+const BucketSchema = new Schema({
     active: Boolean,
     event_id: String,
     based_on_event_id: String,
+    group_id: String,
+    amount: Number,
     allocation_type: {
       type: String,
-      enum: ALLOCATION_TYPES,
+      enum: GROUP_TYPES,
     }
 }, {_id: false, timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}});
 
-const Round = mongoose.model('RoundSchema', RoundSchema);
+const Bucket = mongoose.model('BucketSchema', BucketSchema);
 
-module.exports = Round;
+module.exports = Bucket;

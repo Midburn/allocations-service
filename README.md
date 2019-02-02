@@ -1,4 +1,4 @@
-# Mobilize Gateway
+# Tickets Allocation
 ## General description
 Node.js server serving as proxy to Mobilize API using es6 features.
 
@@ -16,9 +16,3 @@ Node.js server serving as proxy to Mobilize API using es6 features.
 
 - run `npm start` (nodemon keeps the process alive).
 
-## Mobilize authentication
-
-- Replace env vars `MOBILIZE_KEY` and `MOBILIZE_SECRET`
-
-## Roadmap
-Currently only groups + group members fetching implemented.
