@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Midburn/allocations-service.svg?branch=develop)](https://travis-ci.com/Midburn/allocations-service)
+
 # Tickets Allocation
 
 ## Prerequisites
