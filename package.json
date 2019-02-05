@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "webpack --mode development",
-    "build": "rm -rf dist && webpack --mode production",
+    "build": "webpack --mode production",
     "start": "nodemon ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
