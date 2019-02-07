@@ -7,10 +7,18 @@ class BucketService {
     return Bucket.find({})
   }
   createBucket(query) {
-    console.log('query', query)
     return Bucket.create({ 
       ...query
     });
+  }
+
+   sumByAllocation(event_id, based_on_event_id, allocation_type) {
+    return Bucket.find({
+      event_id,
+      based_on_event_id,
+      allocation_type
+    })
+    
   }
 }
 
