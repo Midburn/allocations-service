@@ -4,13 +4,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AllocationSchema = new Schema({
-    profile: String,
-    bucket_id: String,
-    round_id: String,
-    date: Number,
-    allocator: String,
-    deleted: Boolean,
-    amount: Number
+    profile: {type: String, required: true},
+    bucket_id: {type: String, required: true},
+    round_id: {type: String, required: true},
+    date: {type: Number, required: true},
+    allocator: {type: String, required: true},
+    deleted: {type: Boolean, required: true},
+    amount: {type: Number, required: true},
 }, {timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}});
 
 const Allocation = mongoose.model('allocation', AllocationSchema);
