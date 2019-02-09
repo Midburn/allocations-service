@@ -10,7 +10,7 @@ export class BucketsRouter {
   }
 
   init() {
-    console.log('Starting rounds router...');
+    console.log('Starting buckets router...');
     // ----------------  GET ----------------//
     this.express.route('/').get(async (req, res, next) => {
       try {

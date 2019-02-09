@@ -1,18 +1,17 @@
-import mongoose from 'mongoose'
 import Bucket from '../models/bucket'
-import uuid from 'uuid'
 
 class BucketService {
-  getBuckets(query){
+  getBuckets(){
     return Bucket.find({})
   }
   createBucket(query) {
-    return Bucket.create({ 
-      ...query
-    });
+    return Bucket.create(query);
   }
 
    sumByAllocation(event_id, based_on_event_id, allocation_type) {
+
+     if (!event_id || !based_on_event_id || !allocation_type) throw new Error('your query is missing a required parameter')
+
     return Bucket.find({
       event_id,
       based_on_event_id,

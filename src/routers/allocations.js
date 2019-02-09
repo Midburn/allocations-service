@@ -10,7 +10,8 @@ export class AllocationsRouter {
     }
 
     init() {
-        console.log('Starting rounds router...');
+        console.log('Starting allocations router...');
+        // ----------------  GET ----------------//
         this.express.route('/').get(async (req, res, next) => {
             try {
                 // const data = await this.services.rounds.getBuckets(req.query);
@@ -21,6 +22,7 @@ export class AllocationsRouter {
                 return next({ status: 500, data: e });
             }
         });
+        // ----------------  CREATE  ----------------//
         this.express.route('/create').post(async (req, res, next) => {
             try {
                 // const data = await this.services.rounds.getBuckets(req.query);
