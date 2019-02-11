@@ -1,24 +1,25 @@
-import Bucket from '../models/bucket'
+import Bucket from '../models/bucket';
 
 class BucketService {
-  getBuckets(){
-    return Bucket.find({})
+  getBuckets () {
+    return Bucket.find ({});
   }
-  createBucket(query) {
-    return Bucket.create(query);
+  createBucket (data) {
+    const {event_id, based_on_event_id, allocation_type} = data;
+    const query = {event_id, based_on_event_id, allocation_type};
+    return Bucket.findOneAndUpdate (query, data, {upsert: true});
   }
 
-   sumByAllocation(event_id, based_on_event_id, allocation_type) {
+  sumByAllocation (event_id, based_on_event_id, allocation_type) {
+    if (!event_id || !based_on_event_id || !allocation_type)
+      throw new Error ('your query is missing a required parameter');
 
-     if (!event_id || !based_on_event_id || !allocation_type) throw new Error('your query is missing a required parameter')
-
-    return Bucket.find({
+    return Bucket.find ({
       event_id,
       based_on_event_id,
-      allocation_type
-    })
-    
+      allocation_type,
+    });
   }
 }
 
-export default new BucketService()
+export default new BucketService ();
