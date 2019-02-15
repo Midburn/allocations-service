@@ -26,8 +26,6 @@ export class BucketsRouter {
       try {
         const { eventId, basedEventId, allocationType } = req.params
         const data = await this.services.buckets.sumByAllocation(eventId, basedEventId, allocationType);
-        const { group_name } = data
-        console.log({ data })
         return next({ status: 200, data });
       } catch (e) {
         console.log('There was a problem with your query: ', e)
