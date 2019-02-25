@@ -36,7 +36,6 @@ class BucketService {
     for (const bucket of buckets) {
       const { _id, group_id } = bucket;
       const allocations = await Allocation.find({ bucket_id: _id })
-      console.log('_id', _id);
       res[group_id] = {
         ...bucket.toJSON(),
         allocations
@@ -50,7 +49,44 @@ class BucketService {
     const query = { event_id, based_on_event_id, allocation_type };
     return Bucket.findOneAndUpdate(query, data, { upsert: true });
   }
-
+  // get array of requests to create of update buckets
+  async updateBuckets(data){
+    const { requests } = data
+    const result = {
+      sucess: [],
+      failed: []
+    }
+    console.log(requests.length)
+    for (const request of requests) {
+      console.log(request)
+      const { group_type, allocation_type, event_id, based_on_event_id, group_id, group_name, amount } = request
+      request.active = request.active || true;
+      if(!group_type || !allocation_type || !event_id || !based_on_event_id ||        !group_id || !group_name || !amount) {
+        result.failed.push({ 
+        group_id,
+        status: 'failed',
+        e: 'missing parameter'
+      } )}
+      else {
+        const query = { group_type, allocation_type, event_id, based_on_event_id, group_id }
+        try {
+              const res = await Bucket.findOneAndUpdate(query, request, {upsert: true})
+              result.sucess.push({ 
+                group_id,
+                status: 'success'
+              });
+              console.log('res', res)
+        } catch (e) {
+          result.failed.push({ 
+                group_id,
+                status: 'failed',
+                e: e.stack
+          });
+        }
+      }
+    }
+    return result;
+  }
 }
 
 export default new BucketService();
