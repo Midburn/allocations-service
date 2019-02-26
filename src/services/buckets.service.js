@@ -58,7 +58,6 @@ class BucketService {
     }
     console.log(requests.length)
     for (const request of requests) {
-      console.log(request)
       const { group_type, allocation_type, event_id, based_on_event_id, group_id, group_name, amount } = request
       request.active = request.active || true;
       if(!group_type || !allocation_type || !event_id || !based_on_event_id ||        !group_id || !group_name || !amount) {
