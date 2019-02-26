@@ -56,7 +56,6 @@ class BucketService {
       sucess: [],
       failed: []
     }
-    console.log(requests.length)
     for (const request of requests) {
       const { group_type, allocation_type, event_id, based_on_event_id, group_id, group_name, amount } = request
       request.active = request.active || true;
@@ -74,7 +73,6 @@ class BucketService {
                 group_id,
                 status: 'success'
               });
-              console.log('res', res)
         } catch (e) {
           result.failed.push({ 
                 group_id,

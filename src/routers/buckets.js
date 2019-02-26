@@ -23,7 +23,6 @@ export class BucketsRouter {
 
     this.express.route('/byEventAndAllocationType').get(async (req, res, next) => {
       try {
-        console.log('req.query', req.query)
         const data = await this.services.buckets.getBucketByAllocationTypeAndEventId(req.query);
         return next({ status: 200, data });
       } catch (e) {
