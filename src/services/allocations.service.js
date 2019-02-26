@@ -13,8 +13,8 @@ class AllocationService {
   }
 
   updateAllocation(data) {
-    var query = { _id: data._id };
-    return Allocation.findOneAndUpdate(query, data, { upsert: true });
+    const { _id } = data
+    return Allocation.findByIdAndUpdate(_id, data);
   }
 
   getAllocationsByBucketId(bucket_id) {
