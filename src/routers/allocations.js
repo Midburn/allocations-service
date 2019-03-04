@@ -10,6 +10,7 @@ export class AllocationsRouter {
 
   init () {
     console.log ('Starting allocations router...');
+
     // ----------------  GET ----------------//
     this.express.route ('/').get (async (req, res, next) => {
       try {
@@ -21,6 +22,43 @@ export class AllocationsRouter {
         return next ({status: 500, data: e});
       }
     });
+
+    this.express.route ('/buckets/:bucket_id').get (async (req, res, next) => {
+      try {
+        const {bucket_id} = req.params;
+        if (!bucket_id) {
+          throw new Error ('Must supply bucket_id param');
+        }
+        const data = await this.services.allocations.getAllocationsByBucketId (
+          bucket_id
+        );
+        return next ({status: 200, data});
+      } catch (e) {
+        console.log ('There was a problem with your query: ', e);
+        return next ({status: 500, data: e});
+      }
+    });
+
+
+    this.express.route ('/getAllocationsByUsers').get (async (req, res, next) => {
+      try {
+        console.log('req.params', req.body)
+        const { users, roundId } = req.body;
+        if (!users || !roundId) {
+          throw new Error ('Must supply users and roundId params');
+        }
+        const data = await this.services.allocations.getAllocationsByUsers (
+          users,
+          roundId
+        );
+        return next ({status: 200, data});
+      } catch (e) {
+        console.log ('There was a problem with your query: ', e);
+        return next ({status: 500, data: e});
+      }
+    });
+
+
     // ----------------  CREATE  ----------------//
     this.express.route ('/create').post (async (req, res, next) => {
       try {
@@ -48,21 +86,5 @@ export class AllocationsRouter {
       }
     });
 
-    // ----------------  GET BY BucketID  ----------------//
-    this.express.route ('/buckets/:bucket_id').get (async (req, res, next) => {
-      try {
-        const {bucket_id} = req.params;
-        if (!bucket_id) {
-          throw new Error ('Must supply bucket_id param');
-        }
-        const data = await this.services.allocations.getAllocationsByBucketId (
-          bucket_id
-        );
-        return next ({status: 200, data});
-      } catch (e) {
-        console.log ('There was a problem with your query: ', e);
-        return next ({status: 500, data: e});
-      }
-    });
   }
 }
