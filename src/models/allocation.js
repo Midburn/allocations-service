@@ -7,6 +7,7 @@ const AllocationSchema = new Schema({
     profile: {type: String, required: true},
     bucket_id: {type: String, required: true},
     round_id: {type: String, required: true},
+    user_id: {type: Number, required: true},
     date: {type: Number, required: true},
     allocator: {type: String, required: true},
     deleted: {type: Boolean, required: true},
