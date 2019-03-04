@@ -48,6 +48,20 @@ export class AllocationsRouter {
       }
     });
 
+    // ----------------  DELETE  ----------------//
+    this.express.route ('/').delete (async (req, res, next) => {
+      try {
+        if (!req.body._id) {
+          throw new Error ('Must specify _id for removing allocation');
+        }
+        await this.services.allocations.updateAllocation ({_id: req.body._id, deleted: true});
+        return next ({status: 200, data: {success: true}});
+      } catch (e) {
+        console.log ('There was a problem with your query: ', e);
+        return next ({status: 500, data: e});
+      }
+    });
+
     // ----------------  GET BY BucketID  ----------------//
     this.express.route ('/buckets/:bucket_id').get (async (req, res, next) => {
       try {
