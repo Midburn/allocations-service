@@ -2,7 +2,7 @@ import Allocation from '../models/allocation';
 
 class AllocationService {
   getAllocations() {
-    return Allocation.find({});
+    return Allocation.find({deleted: false});
   }
 
   createAllocation(query) {
